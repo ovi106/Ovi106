@@ -16,13 +16,13 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "Rizzu",
-    "PREFIX": "/",
+    "BOTNAME": "Dildar bot",
+    "PREFIX": ".",
     "ADMINBOT": [
-        "100040426712109"
+        "61555576487828"
     ],
     "NDH": [
-        "100037743553265"
+        "61555576487828"
     ],
     "DATABASE": {
         "sqlite": {
