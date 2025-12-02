@@ -1,51 +1,84 @@
 module.exports.config = {
-	name: "inf",
-	version: "1.0.1", 
-	hasPermssion: 0,
-	credits: "Arun Kumar", //don't change the credits please
-	description: "Admin and Bot info.",
-	commandCategory: "info",
-	cooldowns: 1,
-	dependencies: 
-	{
-    "request":"",
-    "fs-extra":"",
-    "axios":""
-  }
+ name: "info",
+ version: "1.2.6",
+ hasPermssion: 0,
+ credits: "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐈𝐬𝐥𝐚𝐦",
+ description: "Bot information command",
+ commandCategory: "For users",
+ hide: true,
+ usages: "",
+ cooldowns: 5,
 };
-module.exports.run = async function({ api,event,args,client,Users,Threads,__GLOBAL,Currencies }) {
-const axios = global.nodemodule["axios"];
-const request = global.nodemodule["request"];
-const fs = global.nodemodule["fs-extra"];
-const time = process.uptime(),
-		hours = Math.floor(time / (60 * 60)),
-		minutes = Math.floor((time % (60 * 60)) / 60),
-		seconds = Math.floor(time % 60);
-const moment = require("moment-timezone");
-var juswa = moment.tz("Asia/Kolkata").format("『D/MM/YYYY』 【HH:mm:ss】");
-var link =                                     
-["https://i.postimg.cc/4yVw6tm7/Picsart-23-03-26-11-08-19-025.jpg", "https://i.imgur.com/rg0fjQE.jpg", "https://i.imgur.com/QcNXYfT.jpg", "https://i.imgur.com/WhVSHLB.png"];
-var callback = () => api.sendMessage({body:`🌹𝙰𝙳𝙼𝙸𝙽 𝙰𝙽𝙳 𝙱𝙾𝚃 𝙸𝙽𝙵𝙾𝚁𝙼𝙰𝚃𝙸𝙾𝙽 🇮🇳 
 
+module.exports.run = async function ({ api, event, args, Users, Threads }) {
+ const { threadID } = event;
+ const request = global.nodemodule["request"];
+ const fs = global.nodemodule["fs-extra"];
+ const moment = require("moment-timezone");
 
-☄️𝗕𝗢𝗧 𝗡𝗔𝗠𝗘☄️ ⚔ ${global.config.BOTNAME} ⚔
+ const { configPath } = global.client;
+ delete require.cache[require.resolve(configPath)];
+ const config = require(configPath);
 
-🔥𝗢𝗪𝗡𝗘𝗥 🔥☞︎︎︎ 𝙰𝚛𝚞𝚗 𝙺𝚞𝚖𝚊𝚛 ☜︎︎︎✰ \n\n
-🙈🄾🅆🄽🄴🅁 🄲🄾🄽🅃🄰🄲🅃 🄻🄸🄽🄺🅂🙈➪ \n\n  𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 🧨https://www.facebook.com/arun.x76 💞🕊️
-  \n 
-✅𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠 𝗨𝗦𝗘𝗥𝗡𝗔𝗠𝗘👉 @arunkumar_031 \n\n  ====𝗧𝗼 𝗹𝗲𝗮𝗿𝗻 𝗛𝗼𝘄 𝘁𝗼 𝗖𝗿𝗲𝗮𝘁𝗲 𝗔 𝗯𝗼𝘁 === 𝗩𝗶𝘀𝗶𝘁 𝗔𝗻𝗱 𝗦𝘂𝗯𝘀𝗰𝗿𝗶𝗯𝗲 𝗧𝗼 𝗠𝘆 𝗖𝗵𝗮𝗻𝗻𝗲𝗹✅ 🗡 https://www.youtube.com/@mirrykal
-✧══════•❁❀❁•══════✧
+ const { commands } = global.client;
+ const threadSetting = (await Threads.getData(String(threadID))).data || {};
+ const prefix = threadSetting.hasOwnProperty("PREFIX") ? threadSetting.PREFIX : config.PREFIX;
 
-🌸𝗕𝗼𝘁 𝗣𝗿𝗲𝗳𝗶𝘅🌸☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
+ const uptime = process.uptime();
+ const hours = Math.floor(uptime / 3600);
+ const minutes = Math.floor((uptime % 3600) / 60);
+ const seconds = Math.floor(uptime % 60);
 
-🥳UPTIME🥳
+ const totalUsers = global.data.allUserID.length;
+ const totalThreads = global.data.allThreadID.length;
 
-🌪️Today is🌪️ ☞︎︎︎☜︎︎︎✰ ${juswa} 
+ const msg = `╭⭓ ⪩ 𝐁𝐎𝐓𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 ⪨
+│
+├─ 🤖 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ─𝐌 𝐁 𝐇 𝐨𝐯𝐢
+├─ ☢️ 𝗣𝗿𝗲𝗳𝗶𝘅 : ${config.PREFIX}
+├─ ♻️ 𝗣𝗿𝗲𝗳𝗶𝘅 𝗕𝗼𝘅 : ${prefix}
+├─ 🔶 𝗠𝗼𝗱𝘂𝗹𝗲𝘀 : ${commands.size}
+├─ 🔰 𝗣𝗶𝗻𝗴 : ${Date.now() - event.timestamp}ms
+│
+╰───────⭓
 
-⚡Bot is running⚡ ${hours}:${minutes}:${seconds}.
+╭⭓ ⪩ 𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢 ⪨
+│
+├─ 👑 𝗡𝗮𝗺𝗲 : 𝐌 𝐁 𝐇 𝐨𝐯𝐢
+├─ 📲 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 :
+│ facebook.com/100078223341664
+├─ 💌 𝗠𝗲𝘀𝘀𝗲𝗻𝗴𝗲𝗿 :
+│ m.me/100078223341664
+├─ 📞 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 :
+│ wa.me/01788999361
+│
+╰───────⭓
 
-✅Thanks for using My Bot ❤ ${global.config.BOTNAME} 🖤
+╭⭓ ⪩ 𝗔𝗖𝗧𝗜𝗩𝗜𝗧𝗜𝗘𝗦 ⪨
+│
+├─ ⏳ 𝗔𝗰𝘁𝗶𝘃𝗲 𝗧𝗶𝗺𝗲 : ${hours}h ${minutes}m ${seconds}s
+├─ 📣 𝗚𝗿𝗼𝘂𝗽𝘀 : ${totalThreads}
+├─ 🧿 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿𝘀 : ${totalUsers}
+╰───────⭓
 
-`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
-      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname + "/cache/juswa.jpg")).on("close",() => callback());
-   };
+❤️ 𝗧𝗵𝗮𝗻𝗸𝘀 𝗳𝗼𝗿 𝘂𝘀𝗶𝗻𝗴 🌺
+ 😍─꯭─⃝‌‌𝐌𝐁𝐇-𝐎𝐯𝐢-𝐂𝐡𝐚𝐭-𝐁𝐨𝐭😘`;
+
+ const imgLinks = [
+ "https://i.imgur.com/zghr9Fr.jpeg",
+ "https://i.imgur.com/zghr9Fr.jpeg",
+ "https://i.imgur.com/zghr9Fr.jpeg",
+ "https://i.imgur.com/zghr9Fr.jpeg"
+ ];
+
+ const imgLink = imgLinks[Math.floor(Math.random() * imgLinks.length)];
+
+ const callback = () => {
+ api.sendMessage({
+ body: msg,
+ attachment: fs.createReadStream(__dirname + "/cache/info.jpg")
+ }, threadID, () => fs.unlinkSync(__dirname + "/cache/info.jpg"));
+ };
+
+ return request(encodeURI(imgLink)).pipe(fs.createWriteStream(__dirname + "/cache/info.jpg")).on("close", callback);
+};
