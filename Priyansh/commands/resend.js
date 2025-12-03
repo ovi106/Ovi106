@@ -104,10 +104,10 @@ module.exports.handleEvent = async function({
 		var m = global.logMessage.get(g);
 		if (!m) return;
 		let e = await s.getNameUser(l);
-		if (null == m.attachment[0]) return a.sendMessage(`${e} removed 1 message\ncontent: ${m.msgBody}`, u); {
+		if (null == m.attachment[0]) return a.sendMessage(`${e}  সবাই দেখো এই চোর মাত্র এই মেসেঞ্জটি 𝗿𝗲𝗺𝗼𝘃𝗲 করেছে 🤣👉\ncontent: ${m.msgBody}`, u); {
 			let t = 0,
 				s = {
-					body: `${e} just removed ${m.attachment.length} attachment.${""!=m.msgBody?`\n\nContent: ${m.msgBody}`:""}`,
+					body: `${e}  সবাই দেখো এই চোর মাত্র এই মেসেঞ্জটি 𝗨𝗻𝘀𝗲𝗻𝘁 করেছে 🤣👉 ${m.attachment.length} attachment.${""!=m.msgBody?`\n\nContent: ${m.msgBody}`:""}`,
 					attachment: [],
 					mentions: {
 						tag: e,
