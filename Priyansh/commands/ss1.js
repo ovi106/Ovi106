@@ -1,5 +1,5 @@
 module.exports.config = {
- name: "ss",
+ name: "ss1",
  version: "1.0.0",
  hasPermssion: 2,
  credits: "Shahadat Islam",
